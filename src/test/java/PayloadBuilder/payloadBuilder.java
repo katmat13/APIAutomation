@@ -25,4 +25,21 @@ public class payloadBuilder {
         return registerUser;
     }
 
+    public static JSONObject approveUserRegistrationPayload() {
+        JSONObject approveUserRegistration = new JSONObject();
+        return approveUserRegistration;
+    }
+
+    public static JSONObject updateUserRolePayload(String role) {
+        JSONObject updateUserRole = new JSONObject();
+        updateUserRole.put("role", role);
+
+        return updateUserRole;
+    }
+
+    public static JSONObject deleteUserPayload() {
+        JSONObject deleteUser = new JSONObject();
+        return deleteUser;
+    }
+
 }

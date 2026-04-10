@@ -6,6 +6,7 @@ import io.restassured.response.Response;
 import static Common.baseURI.baseURL;
 import static PayloadBuilder.payloadBuilder.loginUserPayload;
 import static PayloadBuilder.payloadBuilder.registerUserPayload;
+import static PayloadBuilder.payloadBuilder.updateUserRolePayload;
 
 public class requestBuilder {
 
@@ -54,6 +55,33 @@ public class requestBuilder {
                 .put()
                 .then().extract().response();
     }
+
+    public static Response updateUserRoleResponse(String role) {
+
+        String apiPath = "/APIDEV/admin/users/"+registeredUserId+"/role";
+        return RestAssured.given()
+                .baseUri(baseURL)
+                .basePath(apiPath)
+                .header("Content-Type", "application/json")
+                .header("Authorization", "Bearer " + authToken)
+                .body("{\"role\": \"" + role + "\"}")
+                .log().all()
+                .put()
+                .then().extract().response();
+    }
+
+        public static Response deleteUserResponse() {
+
+            String apiPath = "/APIDEV/admin/users/"+registeredUserId;
+            return RestAssured.given()
+                    .baseUri(baseURL)
+                    .basePath(apiPath)
+                    .header("Content-Type", "application/json")
+                    .header("Authorization", "Bearer " + authToken)
+                    .log().all()
+                    .delete()
+                    .then().extract().response();
+        }
 
 
 }
